@@ -55,30 +55,39 @@
         {
             char[] vowels = { 'a', 'e', 'i', 'o', 'u' };
 
-            for (int i = 0; i <= vowels.Length; i++)
+            if (userInput.IndexOfAny(vowels) == -1)
             {
-                //if first letter starts with vowel add "way" to end of user input
-                if (userInput[0] == vowels[i])
-                {
-                    return userInput += "way";
-                }
-                else if (userInput.Contains(vowels[i]))
-                {
-                    //Locates location of first vowel founds
-                    int vowelIndex = userInput.IndexOfAny(vowels);
-
-                    //Makes new word starting at vowel.
-                    string newWordStartingWithVowel = userInput.Substring(vowelIndex);
-
-                    // Saves letters located before vowel
-                    string lettersbeforeVowel = userInput.Substring(0, vowelIndex);
-
-                    //
-                    return newWordStartingWithVowel += lettersbeforeVowel + "ay";
-                }
-
+                return userInput + " This word has no vowels";
             }
-            return "no vowels found";
+            else
+            {
+               
+                for (int i = 0; i <= vowels.Length; i++)
+                {
+
+                    //if first letter starts with vowel add "way" to end of user input
+                    if (userInput[0] == vowels[i])
+                    {
+                        return userInput += "way";
+                    }
+                    else if (userInput.Contains(vowels[i]))
+                    {
+                        //Locates location of first vowel founds
+                        int vowelIndex = userInput.IndexOfAny(vowels);
+
+                        //Makes new word starting at vowel.
+                        string newWordStartingWithVowel = userInput.Substring(vowelIndex);
+
+                        
+                        string lettersBeforeVowel = userInput.Substring(0, vowelIndex);
+
+                        return newWordStartingWithVowel += lettersBeforeVowel + "ay";
+                    }
+                }
+
+                return "not a valid word";
+            } 
+           
         }
     }
 }
